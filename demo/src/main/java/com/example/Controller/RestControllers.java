@@ -3,12 +3,17 @@ package com.example.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class RestControllers {
-    
+import lombok.extern.log4j.Log4j2;
 
-    @GetMapping(value="/hola")
-    public void prueba(){
-        System.out.println("Hola"); 
+@RestController
+@Log4j2
+public class RestControllers {
+
+    // logger provided by Lombok via @Log4j2 (no manual declaration needed)
+
+    @GetMapping(value = "/hola")
+    public String prueba() {
+        log.info("Hola");
+        return "Hola";
     }
 }
