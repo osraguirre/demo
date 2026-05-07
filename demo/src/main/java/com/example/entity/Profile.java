@@ -45,6 +45,10 @@ public class Profile {
     @OneToMany(mappedBy="profile", cascade = CascadeType.ALL)
     private List<SkillEntity> skills;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy="profile", cascade = CascadeType.ALL)
+    private List<ContactInfo> contactInfo;
+
     @Override
     public String toString() {
         return "Profile{" +
@@ -53,7 +57,8 @@ public class Profile {
                 ", lastName='" + lastName + '\'' +
                 ", location='" + location + '\'' +
                 ", role='" + role + '\'' +
-                ", skills=" + skills +
+                ", skills=" + skills + ',' +
+                ", contactInfo=" + contactInfo +
                 '}';
     }
 }
