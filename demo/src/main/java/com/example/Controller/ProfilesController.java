@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.Profile;
+import com.example.model.ProfileModel;
 import com.example.service.ProfileService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -50,6 +53,18 @@ public class ProfilesController {
     @GetMapping
     public ResponseEntity<List<Profile>> getAllProfiles() {
         return ResponseEntity.ok(profileService.getAllProfiles());
+    }
+
+    @Operation(summary = "Create a new profile", description = "Creates a new profile and returns it")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Profile created successfully"),
+        @ApiResponse(responseCode = "400", description = "Invalid profile data supplied"),
+        @ApiResponse(responseCode = "500", description = "Internal server error")
+    })
+    @PostMapping
+    public ResponseEntity<Profile> createProfile(@RequestBody ProfileModel profile) {
+        // Implement profile creation logic here
+        return ResponseEntity.ok(new Profile());
     }
     
     
